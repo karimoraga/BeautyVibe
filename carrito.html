@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="carrito.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Sistema de Gestión de Ventas</h1>
+        </div>
+        <nav>
+            <ul class="navbar">
+                <li><a href="home.html">Inicio</a></li>
+                <li><a href="compras.html">Compras</a></li>
+                <li><a href="pagos.html">Medios de Pago</a></li>
+                <li><a href="despacho.html">Gestión de Despacho</a></li>
+                <li><a href="pedidos.html">Gestión de Pedidos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Carrito de Compras</h2>
+
+        <div class="cart-container">
+            <!-- Producto en el carrito -->
+            <div class="cart-item">
+                <img src="imgs/cereal.jpg" alt="Cereal Zucaritas">
+                <div class="cart-item-details">
+                    <h3>Producto 1</h3>
+                    <p class="description">Caja de cereales Zucaritas</p>
+                    <div class="cart-item-actions">
+                        <label for="quantity">Cantidad:</label>
+                        <input type="number" id="quantity1" class="quantity" value="1" min="1">
+                        <button class="remove-item" onclick="removeItem(1)">Eliminar</button>
+                    </div>
+                </div>
+                <p class="price" id="price1">$4.990</p>
+            </div>
+
+            <div class="cart-item">
+                <img src="imgs/galleta.jpg" alt="Producto 2">
+                <div class="cart-item-details">
+                    <h3>Producto 2</h3>
+                    <p class="description">Galletas club social</p>
+                    <div class="cart-item-actions">
+                        <label for="quantity">Cantidad:</label>
+                        <input type="number" id="quantity2" class="quantity" value="1" min="1">
+                        <button class="remove-item" onclick="removeItem(2)">Eliminar</button>
+                    </div>
+                </div>
+                <p class="price" id="price2">$1.290</p>
+            </div>
+
+            <div class="cart-item">
+                <img src="imgs/nescafe.jpg" alt="Producto 3">
+                <div class="cart-item-details">
+                    <h3>Producto 3</h3>
+                    <p class="description">Frasco Nescafé</p>
+                    <div class="cart-item-actions">
+                        <label for="quantity">Cantidad:</label>
+                        <input type="number" id="quantity3" class="quantity" value="1" min="1">
+                        <button class="remove-item" onclick="removeItem(3)">Eliminar</button>
+                    </div>
+                </div>
+                <p class="price" id="price3">$3.990</p>
+            </div>
+
+            <div class="cart-summary">
+                <p>Total: <span id="total">$10.270</span></p>
+                <button class="checkout-btn" onclick="checkout()">Ir a Pago</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Sistema de Gestión de Ventas. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="carrito.js"></script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+const urlObtenerProducto = 'http://localhost/BEAUTY-VIBE/api/obtenerProducto.php'
+const urlAgregarProducto = 'http://localhost/BEAUTY-VIBE/api/agregarProducto.php'
+const urlEditarProducto = 'http://localhost/BEAUTY-VIBE/api/editarProducto.php'
+const urlBorrarProducto = 'http://localhost/BEAUTY-VIBE/api/borrarProducto.php'
+
+let listaProductos = []
+
+const objProducto= {
+    idProducto: '',
+    nombre: '',
+    descripcion: '',
+    precio: 0,
+    stock: 0,
+    categoria: ''
+}
+
+let editando = false
+
+const formulario = document.querySelector('#formulario')
+
+const nombreInput = document.querySelector('#nombre')
+const descripcionInput = document.querySelector('#descripcion')
+const precioInput = document.querySelector('#precio')
+const stockInput = document.querySelector('#stock')
+const categoriaInput = document.querySelector('#categoria')
+
+formulario.addEventListener('submit', validarFormulario)
+
+function validarFormulario(e) {
+    e.preventDefault()
+
+    if([nombreInput.value, descripcionInput.value, precioInput.value, stockInput.value, categoriaInput.value].includes('')) {
+        alert('Todos los campos son obligatorios')
+        return
+    }
+
+    if(editando) {
+        editarProducto()
+        editando = false
+    } else {
+        objProducto.nombre = nombreInput.value
+        objProducto.descripcion = descripcionInput.value
+        objProducto.precio = precioInput.value
+        objProducto.stock = stockInput.value
+        objProducto.categoria = categoriaInput.value
+        agregarProducto()
+    }
+}
+
+async function obtenerProductos() {
+
+    listaProductos = await fetch(urlObtenerProducto)
+    .then(respuesta => respuesta.json())
+    .then(datos => datos)
+    .catch(error => console.log(error))
+
+    mostrarProductos()
+
+}
+obtenerProductos()
+
+function mostrarProductos() {
+
+    const divProductos = document.querySelector('.div-productos')
+
+    listaProductos.forEach(producto => {
+        const {idProducto, nombre, descripcion, precio, stock, categoria} = producto
+
+        const parrafo = document.createElement('p')
+        parrafo.textContent = `${idProducto} - ${nombre} -  ${descripcion} - ${precio} - ${stock} -${categoria}`
+        parrafo.dataset.id = idProducto
+
+        const editarBoton = document.createElement('button')
+        editarBoton.onclick = () => cargarProducto(producto)
+        editarBoton.textContent = 'Editar'
+        editarBoton.classList.add('btn', 'btn-editar')
+        parrafo.append(editarBoton)
+
+        const eliminarBoton = document.createElement('button');
+        eliminarBoton.onclick = () => eliminarProducto(idProducto);
+        eliminarBoton.textContent = 'Eliminar';
+        eliminarBoton.classList.add('btn', 'btn-eliminar');
+        parrafo.append(eliminarBoton);
+
+        const hr = document.createElement('hr')
+
+        divProductos.appendChild(parrafo)
+        divProductos.appendChild(hr)
+
+    })
+
+}
+
+async function agregarProducto() {
+
+    const res = await fetch(urlAgregarProducto,
+        {
+            method: 'POST',
+            body: JSON.stringify(objProducto)
+        })
+        .then(respuesta => respuesta.json())
+        .then(data => data)
+        .catch(error => alert(error))
+
+    if(res.msg === 'OK') {
+        alert('Se registro exitosamente')
+        limpiarHTML()
+        obtenerProductos()
+
+        formulario.reset()
+        limpiarObjeto()
+    }
+}
+
+async function editarProducto() {
+    
+    objProducto.nombre = nombreInput.value
+    objProducto.descripcion = descripcionInput.value
+    objProducto.precio = precioInput.value
+    objProducto.stock = stockInput.value
+    objProducto.categoria = categoriaInput.value
+
+    const res = await fetch(urlEditarProducto,
+        {
+            method: 'POST',
+            body: JSON.stringify(objProducto)
+        })
+        .then(respuesta => respuesta.json())
+        .then(data => data)
+        .catch(error => alert(error))
+
+    if(res.msg === 'OK')  {
+        alert('Se actualizó correctamente')
+
+        limpiarHTML()
+        obtenerProductos()
+        formulario.reset()
+
+        limpiarObjeto()
+    }
+
+    formulario.querySelector('button[type="submit"]').textContent = 'Agregar';
+
+    editando = false
+
+}
+
+async function eliminarProducto(id) {
+
+    const res = await fetch(urlBorrarProducto,
+        {
+            method: 'POST',
+            body: JSON.stringify({'idProducto': id})
+        })
+        .then(respuesta => respuesta.json())
+        .then(data => data)
+        .catch(error => alert(error))
+
+        if(res.msg === 'OK') {
+            alert('Se borró exitosamente')
+
+            limpiarHTML()
+            obtenerProductos()
+            limpiarObjeto()
+        }
+
+}
+
+function cargarProducto(producto) {
+    const {idProducto, nombre, descripcion, precio, stock, categoria} = producto
+
+    nombreInput.value = nombre
+    descripcionInput.value = descripcion
+    precioInput.value = precio
+    stockInput.value = stock
+    categoriaInput.value = categoria
+
+    objProducto.idProducto = idProducto
+
+    formulario.querySelector('button[type="submit"').textContent = 'Actualizar'
+    editando = true
+}
+
+function limpiarHTML() {
+    const divProductos = document.querySelector('.div-productos');
+    while(divProductos.firstChild) {
+        divProductos.removeChild(divProductos.firstChild)
+    }
+}
+
+function limpiarObjeto() {
+    objProducto.idProducto = ''
+    objProducto.nombre = ''
+    objProducto.descripcion = ''
+    objProducto.precio = 0
+    objProducto.stock = 0
+    objProducto.categoria = ''
+}
