@@ -6,7 +6,7 @@
 
 
 body {
-    background-color: bisque;
+    background-color: rgb(241, 241, 241);
 }
 
 .div-titulo {
@@ -15,15 +15,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: Verdana;
+    color:rgb(224, 118, 168)
 }
 
 .div-titulo h1 {
     font-weight: 300;
+    font: verdana;
 }
 
 .contenedor {
     width: 100%;
-    height: 200vh;
     display: flex;
     justify-content: center;
 }
@@ -33,13 +35,13 @@ body {
     width: 30%;
     height: 40%;
     margin: 15px 15px;
-    background-color: rgb(135, 132, 132);
+    background-color: #ffa3a3;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    box-shadow: 10px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5px rgba(145, 145, 145, 0.3);
 }
 
 .contenedor .div-formulario h2 {
@@ -47,6 +49,7 @@ body {
     font-weight: 300;
     font-size: 2em;
     color: whitesmoke;
+    font-family: Verdana;
 }
 
 .contenedor .div-formulario form {
@@ -68,14 +71,13 @@ body {
 /* ESTILOS LISTADO */
 .contenedor .div-listado {
     width: 55%;
-    height: calc(100% - 50px);
     margin: 15px 15px;
-    background-color: rgb(135, 132, 132);
+    background-color: #ffa3a3;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
-    box-shadow: 10px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5px rgba(145, 145, 145, 0.3);
 }
 
 .contenedor .div-listado h2 {
@@ -83,12 +85,11 @@ body {
     font-weight: 300;
     font-size: 2em;
     color: whitesmoke;
+    font-family: Verdana;
 }
 
 .contenedor .div-listado .div-productos {
     width: 100%;
-    height: 100%;
-    display: flex;
     flex-direction: column;
     align-items: center;
     margin: 15px;
@@ -98,7 +99,9 @@ body {
 .contenedor .div-listado .div-productos p {
     margin: 10px 0;
     font-size: 1em;
-    color: #ddd;
+    color: #ffffff;
+    font-family: Verdana;
+    font-style: bold;
 }
 
 hr {
@@ -115,9 +118,9 @@ hr {
 }
 
 .btn-editar {
-    background-color: green;
+    background-color: rgb(83, 124, 172);
 }
 
 .btn-eliminar {
-    background-color: red;
+    background-color: rgb(255, 129, 192);
 }

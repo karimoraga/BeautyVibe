@@ -11,9 +11,9 @@
     
     $objProducto = json_decode($json);
 
-    $sql = "INSERT INTO productos(id_producto, nombre_producto, precio, stock, categoria) VALUES('$objProducto->nombre', '$objProducto->descripcion', '$objProducto->precio', '$objProducto->stock', '$objProducto->categoria')";
+    $sql = "INSERT INTO productos(nombre, descripcion, precio, stock, categoria) VALUES('$objProducto->nombre', '$objProducto->descripcion', '$objProducto->precio', '$objProducto->stock', '$objProducto->categoria')";
     
     $query = $mysqli->query($sql);
 
-    $jsonRespuesta = array('msg' => 'OK');
+    $jsonRespuesta = array('msg' => 'OK', 'detalle' => $mysqli->error);
     echo json_encode($jsonRespuesta);
