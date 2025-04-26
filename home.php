@@ -7,22 +7,10 @@
   <title>Beauty❤Vibe</title>
 </head>
 <body>
-  <div class="top">
-  <img src="/imgs/header.jpg">
-  <div class="navbar">
-    <a class="active" href=/home.html>Home</a> ❤
-    <a href=/login.html>Login</a> ❤
-    <a href=/registro.html>Registro</a> ❤
-    <a href=/carrito.html>Carrito</a> ❤
-
-  </div>
-</div>
-  <div class="box1">
+  <?php include "includes/header.php"; ?>
+  <div class="box">
     <h1>Bienvenid@:</h1>
     <p>Bienvenido a Beauty❤Vibe, tienda on-line de maquillaje y cuidado personal. Te invitamos a registrarte, revisar nuestro catálogo y disfrutar nuestros productos!</p>
   </div>
-
-
-  
 </body>
 </html>
