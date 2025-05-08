@@ -88,3 +88,11 @@ a:hover {
 .close:hover {
     color: black;
 }
+
+/* Posicionamiento fijo del menú */
+.dropdown {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}

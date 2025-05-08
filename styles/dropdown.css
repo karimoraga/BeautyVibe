@@ -1,0 +1,126 @@
+/* Dropdown principal */
+.dropdown {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  min-width: 12em;
+}
+/* Reset de box-sizing */
+.dropdown * {
+  box-sizing: border-box;
+}
+.select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffacc5;
+  color: #fff;
+  border: 2px solid #ffacc5;
+  border-radius: 0.5em;
+  padding: 1em;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.select:hover {
+  background: #f4f4f4;
+  color: #ffacc5;
+}
+.select-clicked {
+  box-shadow: 0 0 0.8em #ffacc5;
+}
+.caret {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #fff;
+  transition: transform 0.3s;
+}
+.caret-rotate {
+  transform: rotate(180deg);
+}
+
+.menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #ffacc5;
+  border: 1px solid #ffacc5;
+  border-radius: 0.5em;
+  box-shadow: 0 0.5em 1em rgba(0,0,0,0.2);
+  list-style: none;
+  padding: 0.2em 0.5em;
+  margin: 0;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+}
+.menu-open {
+  display: block;
+  opacity: 1;
+}
+
+.menu li {
+  position: relative;
+  margin: 0.3em 0;
+  border-radius: 0.5em;
+  cursor: pointer;
+  color: white; /* color base blanco */
+  transition: background 0.2s, color 0.2s;
+}
+
+.menu li:hover {
+  background: #f4f4f4;
+  color: #ffacc5; /* al hacer hover se vuelve rosado */
+}
+
+.menu li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 0.7em 0.5em;
+}
+
+.menu li a:hover {
+  color: #ffacc5; /* si algún li tiene enlace */
+}
+
+.active {
+  background: #e975b5;
+  color: #ffacc5;
+}
+
+/* Submenú */
+.has-submenu {
+  position: relative;
+}
+.submenu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  min-width: 10em;
+  background: #ffe0ec;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  box-shadow: 0 0.2em 1em rgba(0,0,0,0.15);
+  list-style: none;
+  display: none;
+  margin: 0;
+  z-index: 20;
+}
+.has-submenu:hover > .submenu,
+.has-submenu.touch-open > .submenu {
+  display: block;
+}
+.submenu li {
+  padding: 0.5em;
+  border-radius: 0.3em;
+  cursor: pointer;
+}
+.submenu li:hover {
+  background: #f4f4f4;
+  color: #ff6290;
+}

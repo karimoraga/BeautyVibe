@@ -6,20 +6,14 @@
     header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 
     require "conexion.php";
-    
+
     $json = file_get_contents("php://input");
     
-    $objId = json_decode($json);
+    $objProducto = json_decode($json);
 
-    $sql = "DELETE FROM carrito WHERE idProducto='$objId->idProducto'";
-    $query = $mysqli->query($sql);
-
-    $sql = "DELETE FROM wishlist WHERE idProducto='$objId->idProducto'";
-    $query = $mysqli->query($sql);
-
-    $sql = "DELETE FROM productos WHERE idProducto='$objId->idProducto'";
-    $query = $mysqli->query($sql);
-
-    $jsonRespuesta = array('msg' => 'OK');
-    echo json_encode($jsonRespuesta);
+    $sql = "INSERT INTO productos(nombre, descripcion, precio, stock, categoria) VALUES('$objProducto->nombre', '$objProducto->descripcion', '$objProducto->precio', '$objProducto->stock', '$objProducto->categoria')";
     
+    $query = $mysqli->query($sql);
+
+    $jsonRespuesta = array('msg' => 'OK', 'detalle' => $mysqli->error);
+    echo json_encode($jsonRespuesta);

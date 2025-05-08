@@ -9,3 +9,5 @@
     } else {
         //echo "Conexion exitosa";
     }
+
+    $mysqli->set_charset('utf8');

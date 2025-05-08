@@ -1,24 +1,11 @@
-  <?php session_start(); ?>
-  <div class="top">
-    <img src="imgs/header.jpg">
-    <?php 
-    $logged = false;
-    if(isset($_SESSION["username"])) {
-      echo "<br><small>Estás logeado como <em>" . $_SESSION["username"] . " </em></small>";
-      $logged = true;
-    }
-    ?>
-    <small></small>
-    <div class="navbar">
-      <a href=home.php>Home</a> ❤
-      <a href=maquillaje.php>Maquillaje</a> ❤
-      <a href="#Skincare">Skincare</a> ❤
-      <a href="#Wishlist">Wishlist</a> ❤
-    <?php if($logged) { ?>
-      <a href="logout.php">Logout</a>
-    <?php } else { ?>
-      <a href="registro.php">Registro</a> ❤
-      <a href="login.php">Login</a>
-    <?php } ?>
-    </div>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/dropdown.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Beauty❤Vibe</title>
+</head>
+<body>

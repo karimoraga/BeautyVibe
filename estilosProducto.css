@@ -1,12 +1,23 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 
 body {
     background-color: rgb(241, 241, 241);
+}
+.navbar {
+  background-color: #ff9fc4;
+  text-align: center;
+  border-radius: 20px;
+  margin: 1em auto;
+  padding: 10px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-decoration: none;
+  max-width: 800px;
+  color:rgb(255, 255, 255);
+  
+}
+a:visited {
+  text-decoration: none;
+  color:#ffffff
 }
 
 .div-titulo {
@@ -16,7 +27,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: Verdana;
-    color:rgb(224, 118, 168)
+    color:rgb(#ff9fc4)
 }
 
 .div-titulo h1 {
@@ -35,8 +46,10 @@ body {
     width: 30%;
     height: 40%;
     margin: 15px 15px;
-    background-color: #ffa3a3;
+    background-color: #ff9fc4;
     display: flex;
+    padding-top: 40px;
+    padding-bottom: 40px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -72,12 +85,16 @@ body {
 .contenedor .div-listado {
     width: 55%;
     margin: 15px 15px;
-    background-color: #ffa3a3;
-    display: flex;
-    flex-direction: column;
+    background-color: #ff9fc4;
+
     align-items: center;
     border-radius: 10px;
+    text-align: left;
     box-shadow: 5px 5px rgba(145, 145, 145, 0.3);
+    margin: 3em 1;
+    padding: 40px;
+    padding-bottom: 40px;
+    
 }
 
 .contenedor .div-listado h2 {
@@ -93,7 +110,8 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 15px;
-    padding: 0 30px;
+    padding: 30 30px;
+    
 }
 
 .contenedor .div-listado .div-productos p {

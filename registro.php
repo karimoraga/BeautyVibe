@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./style.css">
-  <title>Beauty❤Vibe</title>
-</head>
-<body>
   <?php include "includes/header.php"; ?>
+  <?php include "includes/navbar.php"; ?>
   <?php
     $mostrar_form = true;
 
@@ -66,11 +58,12 @@
     <form action="" method="post">
         <h1>Registro</h1>
         <p>Llena los campos para crear una cuenta.</p>
-        <hr>
+
+        <br>
         <label for="username">Usuario</label>
         <input type="text" placeholder="Ingresar nombre de usuario" name="username" id="username" value="<?php getget("username"); ?>" required>
         <hr>
-
+      
         <label for="nombres">Nombres</label>
         <input type="text" placeholder="Ingresar nombres" name="nombres" id="nombres" value="<?php getget("nombres"); ?>"required>
         <hr>
@@ -99,12 +92,11 @@
         <input type="password" placeholder="Repetir contraseña" name="psw-repeat" id="psw-repeat" required>
         <hr>
     
-        <p>Al crear una cuenta estás aceptando nuestros <a href=terminos.html>Terminos de privacidad</a>.</p>
         <button type="submit" class="registerbtn" name="submit">Registrarse</button>
+        <br>
       <p style="text-align: center;">Ya tienes una cuenta? <a href=login.php>Log in</a>.</p>
     </form> 
+    <br>
   </div>
   <?php } ?>
-
-</body>
-</html>
+  <?php include "includes/footer.php"; ?>

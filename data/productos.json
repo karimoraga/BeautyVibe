@@ -1,0 +1,44 @@
+[
+  {
+    "marca": "Natasha Denona",
+    "nombre": "Paleta de Sombras I Need a Nude",
+    "categoria": "Ojos",
+    "precio": 86200,
+    "imagen": "imgs/nd-o.jpg"
+  },
+  {
+    "marca": "Charlotte Tilbury",
+    "nombre": "Paleta de Sombras Denim Dimension",
+    "categoria": "Ojos",
+    "precio": 60000,
+    "imagen": "imgs/cb-o.jpg"
+  },
+  {
+    "marca": "Huda Beauty",
+    "nombre": "Paleta de Sombras Icy Nude",
+    "categoria": "Ojos",
+    "precio": 85000,
+    "imagen": "imgs/hb-o.jpg"
+  },
+  {
+    "marca": "Pat McGrath LABS",
+    "nombre": "Paleta de Sombras Mothership VII Divine Rose",
+    "categoria": "Ojos",
+    "precio": 75000,
+    "imagen": "imgs/pm-o.jpg"
+  },
+  {
+    "marca": "Hourglass",
+    "nombre": "Paleta de Rostro Ambient® Lighting Palette",
+    "categoria": "Rostro",
+    "precio": 75000,
+    "imagen": "imgs/h-r.jpg"
+  },
+  {
+    "marca": "Rare Beauty",
+    "nombre": "Rubor Líquido Soft Pinch",
+    "categoria": "Rostro",
+    "precio": 25000,
+    "imagen": "imgs/rb-r.jpg"
+  }
+]

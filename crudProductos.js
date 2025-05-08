@@ -11,7 +11,8 @@ const objProducto= {
     descripcion: '',
     precio: 0,
     stock: 0,
-    categoria: ''
+    categoria: '',
+    img: ''
 }
 
 let editando = false
@@ -23,10 +24,18 @@ const descripcionInput = document.querySelector('#descripcion')
 const precioInput = document.querySelector('#precio')
 const stockInput = document.querySelector('#stock')
 const categoriaInput = document.querySelector('#categoria')
+const imgInput = document.querySelector('#img')
 
 formulario.addEventListener('submit', validarFormulario)
 
-function validarFormulario(e) {
+const toBase64 = file => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => resolve(reader.result);
+  reader.onerror = reject;
+});
+
+async function validarFormulario(e) {
     e.preventDefault()
 
     if([nombreInput.value, descripcionInput.value, precioInput.value, stockInput.value, categoriaInput.value].includes('')) {
@@ -43,6 +52,7 @@ function validarFormulario(e) {
         objProducto.precio = precioInput.value
         objProducto.stock = stockInput.value
         objProducto.categoria = categoriaInput.value
+        objProducto.img = await toBase64(imgInput.files[0])
         agregarProducto()
     }
 }
@@ -64,10 +74,14 @@ function mostrarProductos() {
     const divProductos = document.querySelector('.div-productos')
 
     listaProductos.forEach(producto => {
-        const {idProducto, nombre, descripcion, precio, stock, categoria} = producto
+        const {idProducto, nombre, descripcion, precio, stock, categoria, img} = producto
 
         const parrafo = document.createElement('p')
-        parrafo.textContent = `${idProducto} - ${nombre} -  ${descripcion} - ${precio} - ${stock} -${categoria}`
+        parrafo.innerHTML = `${idProducto} - ${nombre} -  ${descripcion} - \$${precio} - ${stock} - ${categoria}`
+        if(img != "") {
+          parrafo.innerHTML += "<br><img src=\"imgs/productos/" + img + "\"><br>";
+        }
+        
         parrafo.dataset.id = idProducto
 
         const editarBoton = document.createElement('button')
@@ -92,7 +106,6 @@ function mostrarProductos() {
 }
 
 async function agregarProducto() {
-
     const res = await fetch(urlAgregarProducto,
         {
             method: 'POST',
@@ -119,6 +132,9 @@ async function editarProducto() {
     objProducto.precio = precioInput.value
     objProducto.stock = stockInput.value
     objProducto.categoria = categoriaInput.value
+    if(imgInput.value) {
+      objProducto.img = await toBase64(imgInput.files[0])
+    }
 
     const res = await fetch(urlEditarProducto,
         {

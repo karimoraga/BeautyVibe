@@ -1,6 +1,8 @@
 <?php
     $mostrar_form = true;
 
+    if((isset($_GET["a"]))) $msg = "Debe estar logeado para realizar esta acción.";
+
     // Si el usuario envió el formulario...
     if(!empty($_POST)) {
         // Usaremos la BD así que nos conectamos
@@ -13,25 +15,30 @@
         $r = $q->get_result();
 
         if($r->num_rows > 0) {
+          // El usuario existe, por lo tanto sacamos su información
+          $usuario = $r->fetch_assoc();
+
           session_start();
-          $_SESSION["username"] = $_POST["username"];
-          header("Location: home.php");
+          $_SESSION["username"] = $usuario["username"];
+
+          if($usuario["tipo"] == "1") {
+            $_SESSION["admin"] = true;
+            header("Location: admin.php");
+          } else {
+            $_SESSION["admin"] = false;
+            header("Location: home.php");
+          }
+
           die();
         } else {
+          // El usuario no existe
           $msg = "Favor verifique sus credenciales.";
         }
     }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./style.css">
-  <title>Login</title>
-</head>
-<body>
   <?php include "includes/header.php"; ?>
+  <?php include "includes/dropdown.php"; ?>
+  <?php include "includes/navbar.php"; ?>
   <?php
     // Mostrar mensaje si existe
     if(isset($msg)) {
@@ -51,8 +58,7 @@
         <hr>
   
         <button type="submit" class="registerbtn" name="submit">Entrar</button>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde consequatur optio, accusamus, eaque ipsam minima nesciunt aliquid excepturi nobis assumenda iste distinctio tempora odio itaque qui quia atque corporis dolorem.</p>
+        
     </form>
   </div>
-</body>
-</html>
+<?php include "includes/footer.php"; ?>
