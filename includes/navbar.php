@@ -8,7 +8,7 @@
     <?php 
     $logged = false;
     $admin = false;
-    if(isset($_SESSION["username"])) {
+    if(isset($_SESSION["idUsuario"])) {
       echo '<br><small style="color:rgb(255, 144, 181)">Estás logeado como:<b> <em>' . $_SESSION["username"] . '</em></b></small>';
       $logged = true;
     }

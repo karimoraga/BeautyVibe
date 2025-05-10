@@ -7,14 +7,14 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Verifica que el usuario esté autenticado
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['idUsuario'])) {
     echo json_encode(['error' => 'No autorizado']);
     exit();
 }
 
 require 'conexion.php'; // Asegúrate de que este archivo existe y se conecta bien
 
-$username = $_SESSION['username'];
+$idUsuario = $_SESSION['idUsuario'];
 
 // Verificar conexión
 if (!$mysqli) {
@@ -23,9 +23,9 @@ if (!$mysqli) {
 }
 
 // 1. Obtener datos personales
-$sqlUser = "SELECT idUsuario, nombres, email, direccion FROM usuarios WHERE username = ?";
+$sqlUser = "SELECT idUsuario, nombres, email, direccion FROM usuarios WHERE idUsuario = ?";
 $stmtUser = $mysqli->prepare($sqlUser);
-$stmtUser->bind_param("s", $username);
+$stmtUser->bind_param("i", $idUsuario);
 $stmtUser->execute();
 $resultUser = $stmtUser->get_result();
 $user = $resultUser->fetch_assoc();

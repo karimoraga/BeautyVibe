@@ -19,6 +19,7 @@
           $usuario = $r->fetch_assoc();
 
           session_start();
+          $_SESSION["idUsuario"] = $usuario["idUsuario"];
           $_SESSION["username"] = $usuario["username"];
 
           if($usuario["tipo"] == "1") {

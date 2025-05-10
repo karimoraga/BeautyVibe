@@ -12,8 +12,8 @@ if(isset($_GET["quitar"])) {
   // Quitar del wishlist
   $idproducto = intval($_GET["quitar"]);
 
-  $q = $mysqli->prepare("DELETE FROM wishlist WHERE username = ? AND idProducto = ?");
-  $q->bind_param("si", $_SESSION["username"], $idproducto);
+  $q = $mysqli->prepare("DELETE FROM wishlist WHERE idUsuario = ? AND idProducto = ?");
+  $q->bind_param("ii", $_SESSION["idUsuario"], $idproducto);
   $q->execute();
   
   echo '<div class="msg">El producto ha sido quitado de la wishlist.</div>';
@@ -23,11 +23,11 @@ $sql = <<<EOL
   SELECT wishlist.idProducto AS idProducto, productos.nombre AS nombre, productos.descripcion AS descripcion, productos.precio AS precio
   FROM wishlist
   INNER JOIN productos ON productos.idProducto = wishlist.idProducto
-  WHERE wishlist.username = ?
+  WHERE wishlist.idUsuario = ?
 EOL;
 
 $q = $mysqli->prepare($sql);
-$q->bind_param("s", $_SESSION["username"]);
+$q->bind_param("i", $_SESSION["idUsuario"]);
 $q->execute();
 $r = $q->get_result();
 

@@ -13,12 +13,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
       $nuevacantidad = intval($v);
 
       if($nuevacantidad < 1) {
-        $q = $mysqli->prepare("DELETE FROM carrito WHERE username = ? AND idProducto = ?");
-        $q->bind_param("si", $_SESSION["username"], $idproducto);
+        $q = $mysqli->prepare("DELETE FROM carrito WHERE idUsuario = ? AND idProducto = ?");
+        $q->bind_param("ii", $_SESSION["idUsuario"], $idproducto);
         $q->execute();
       } else {
-        $q = $mysqli->prepare("UPDATE carrito SET cantidad = ? WHERE username = ? AND idProducto = ?");
-        $q->bind_param("isi", $nuevacantidad, $_SESSION["username"], $idproducto);
+        $q = $mysqli->prepare("UPDATE carrito SET cantidad = ? WHERE idUsuario = ? AND idProducto = ?");
+        $q->bind_param("iii", $nuevacantidad, $_SESSION["idUsuario"], $idproducto);
         $q->execute();
       }
     }
@@ -35,11 +35,11 @@ $sql = <<<EOL
     productos.precio AS precio
   FROM carrito
   INNER JOIN productos ON productos.idProducto = carrito.idProducto
-  WHERE carrito.username = ?
+  WHERE carrito.idUsuario = ?
 EOL;
 
 $q = $mysqli->prepare($sql);
-$q->bind_param("s", $_SESSION["username"]);
+$q->bind_param("i", $_SESSION["idUsuario"]);
 $q->execute();
 $r = $q->get_result();
 $productos = ($r->num_rows > 0) ? $r->fetch_all(MYSQLI_ASSOC) : [];

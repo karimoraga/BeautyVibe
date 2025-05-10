@@ -1,7 +1,7 @@
 <?php
   /* Aqui chequeamos si está logeado y si es admin */
   session_start();
-  if(!isset($_SESSION["username"]) || !$_SESSION["admin"]) {
+  if(!isset($_SESSION["idUsuario"]) || !$_SESSION["admin"]) {
     header("Location: home.php");
     die();
   }

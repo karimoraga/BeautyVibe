@@ -1,6 +1,6 @@
 <?php
   session_start();
-  if(!isset($_SESSION["username"])) {
+  if(!isset($_SESSION["idUsuario"])) {
     header("Location: login.php?a=1");
     die();
   }
@@ -17,13 +17,13 @@ SELECT
   productos.precio AS precio
 FROM carrito
 INNER JOIN productos ON productos.idProducto = carrito.idProducto
-WHERE carrito.username = ?
+WHERE carrito.idUsuario = ?
 EOL;
 
 $q = $mysqli->prepare($sql);
 if(!$q) die($mysqli->error);
 
-$q->bind_param("s", $_SESSION["username"]);
+$q->bind_param("i", $_SESSION["idUsuario"]);
 $q->execute();
 $r = $q->get_result();
 

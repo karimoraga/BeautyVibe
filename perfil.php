@@ -1,18 +1,12 @@
 <?php
 session_start();
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['idUsuario'])) {
     header("Location: login.php");
     exit();
 }
 ?>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mi Perfil</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
+<?php include "includes/header.php"; ?>
+<style>
     body {
         color: #880e4f;
         font-family: Arial, sans-serif;
@@ -81,11 +75,7 @@ if (!isset($_SESSION['username'])) {
     .burdeo {
   color: #880e4f;
 }
-
-  </style>
-</head>
-<body>
-
+</style>
 <?php include "includes/navbar.php"; ?>
 
 <div class="box1">
@@ -193,5 +183,4 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
-</body>
-</html>
+<?php include "includes/footer.php"; ?>
