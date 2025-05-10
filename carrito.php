@@ -47,10 +47,20 @@ $productos = ($r->num_rows > 0) ? $r->fetch_all(MYSQLI_ASSOC) : [];
 $total = 0;
 ?>
 <script>
+  const productos_en_carro = <?= $r->num_rows ?>;
+
   function quitar(pid) {
     const selector = "c" + pid;
     document.forms[0][selector].value = 0;
     document.forms[0].submit();
+  }
+
+  function pagar() {
+    if(productos_en_carro > 0) {
+      window.location.href='pago.php';
+    } else {
+      alert("No hay productos en su carro.");
+    }
   }
 </script>
 <div class="wishlist-container">
@@ -86,7 +96,7 @@ $total = 0;
     </table>
     <input type="submit" class="registerbtn" name="actualizar" value="Actualizar carro">
     <br>
-    <button type="button" class="registerbtn" onclick="window.location.href='pago.php'">Pago</button>
+    <button type="button" class="registerbtn" onclick="pagar()">Pago</button>
     </form>
 </div>
 
