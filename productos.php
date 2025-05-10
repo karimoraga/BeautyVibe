@@ -25,6 +25,8 @@ if($c) $sql .= " WHERE productos.categoria = " . intval($c);
 $result = $mysqli->query($sql);
 if(!$result) die($mysqli->error);
 
+$productos = ($result->num_rows > 0) ? $result->fetch_all(MYSQLI_ASSOC) : [];
+
 if ($result->num_rows > 0) {
   $productos = $result->fetch_all(MYSQLI_ASSOC);
   if($c) $categoria_nombre = $productos[0]["categoria"];

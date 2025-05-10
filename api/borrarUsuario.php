@@ -11,7 +11,7 @@
     
     $objId = json_decode($json);
 
-    $sql = "DELETE FROM productos WHERE idProducto='$objId->idProducto'";
+    $sql = "DELETE FROM usuarios WHERE idUsuario='$objId->idUsuario'";
     $query = $mysqli->query($sql);
 
     $jsonRespuesta = array('msg' => 'OK');

@@ -13,6 +13,8 @@
   <h1>Bienvenido al panel de Administracion</h1>
   <p>Acá podrá acceder al menú para administrar los productos y usuarios</p>
   <hr>
-  <p><a href="CrudProductos.html" class="registerbtn">Administración de productos</a></p>
+  <p><a href="CrudProductos.html" class="registerbtn">Administración de Productos</a></p>
+  <hr>
+  <p><a href="CrudUsuarios.html" class="registerbtn">Administración de Usuarios</a></p>
 </div>
 <?php include "includes/footer.php"; ?>
