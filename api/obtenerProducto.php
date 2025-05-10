@@ -6,14 +6,14 @@
 
     require "conexion.php";
     
-    $sql = "SELECT productos.*, categorias.nombre AS nombreCategoria FROM productos INNER JOIN categorias ON productos.categoria = categorias.id";
+    $sql = "SELECT productos.*, categorias.nombre AS nombreCategoria FROM productos INNER JOIN categorias ON productos.categoria = categorias.id ORDER BY idProducto ASC";
     $query = $mysqli->query($sql);
     $productos = array();
     while($resultado = $query->fetch_assoc()) {
         $productos[] = $resultado;
     }
 
-    $sql = "SELECT * FROM categorias";
+    $sql = "SELECT * FROM categorias ORDER BY orden ASC";
     $query = $mysqli->query($sql);
     $categorias = array();
     while($resultado = $query->fetch_assoc()) {

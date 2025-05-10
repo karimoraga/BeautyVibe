@@ -22,7 +22,7 @@ EOL;
 if(isset($_GET["c"])) $c = intval($_GET["c"]);
 if($c) $sql .= " WHERE productos.categoria = " . intval($c);
 
-$sql.= " ORDER BY productos.categoria ASC, productos.nombre ASC";
+$sql.= " ORDER BY categorias.orden ASC, productos.nombre ASC";
 
 $result = $mysqli->query($sql);
 if(!$result) die($mysqli->error);
