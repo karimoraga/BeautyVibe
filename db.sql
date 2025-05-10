@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2025 at 01:07 AM
+-- Generation Time: May 11, 2025 at 01:34 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,59 +24,44 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `productos`
+-- Table structure for table `categorias`
 --
 
-CREATE TABLE `productos` (
-  `idProducto` int(11) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `marca` varchar(50) NOT NULL,
-  `descripcion` text NOT NULL,
-  `precio` int(11) NOT NULL,
-  `stock` int(11) NOT NULL,
-  `categoria` int(5) NOT NULL,
-  `img` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `categorias` (
+  `id` int(5) NOT NULL,
+  `nombre` varchar(32) NOT NULL,
+  `orden` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
--- Dumping data for table `productos`
+-- Dumping data for table `categorias`
 --
 
-INSERT INTO `productos` (`idProducto`, `nombre`, `marca`, `descripcion`, `precio`, `stock`, `categoria`, `img`) VALUES
-(36, 'Polvo Iluminador ', 'Rosy Glow ', '  Crea looks frescos y brillantes para que nunca dejes de estar radiante. Utiliza nuestro nuevo polvo iluminador compacto Rosy Glow para resaltar el área del rosto que quieras.', 3990, 10, 2, '1746743725.jpg'),
-(37, 'Gotas Bronceadoras Drop Of Sunshine', 'ESSENCE', '  Potencia tu brillo con las Gotas Bronceadoras Drop Of Sunshine de Essence. Las gotas vienen en un tono bronce neutro con perlas sutiles y se difuminan en la piel muy fácilmente, proporcionándote un aspecto bronceado y saludable.', 3990, 10, 1, '1746743790.jpg'),
-(38, 'Polvos Compactos Matificantes All About Matt!', 'ESSENCE', 'Si prefieres los polvos compactos, este producto es para ti, se puede aplicar sobre la base de maquillaje para fijarla y matificar el rostro.  Para un rostro mate y natural.  Es perfecto para cuando estás fuera.', 4990, 10, 1, '1746743854.jpg');
+INSERT INTO `categorias` (`id`, `nombre`, `orden`) VALUES
+(1, 'Maquillaje', 10),
+(2, 'Skincare', 9),
+(3, 'Ojos', 6),
+(4, 'Rostro', 7);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `productos`
+-- Indexes for table `categorias`
 --
-ALTER TABLE `productos`
-  ADD PRIMARY KEY (`idProducto`),
-  ADD KEY `categoria` (`categoria`);
+ALTER TABLE `categorias`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `productos`
+-- AUTO_INCREMENT for table `categorias`
 --
-ALTER TABLE `productos`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `productos`
---
-ALTER TABLE `productos`
-  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`categoria`) REFERENCES `categorias` (`id`);
+ALTER TABLE `categorias`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
