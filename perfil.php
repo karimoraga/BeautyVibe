@@ -85,8 +85,8 @@ if (!isset($_SESSION['idUsuario'])) {
   <div class="datos-usuario">
     <h2>Información Personal</h2>
     <form id="form-perfil">
-      <p><strong class="burdeo">Nombre:</strong> <input type="text" id="nombre" name="nombre" required /></p>
-      <p><strong class="burdeo">Correo:</strong> <input type="email" id="correo" name="correo" required /></p>
+      <p><strong class="burdeo">Nombres:</strong> <input type="text" id="nombres" name="nombres" required /></p>
+      <p><strong class="burdeo">E-mail:</strong> <input type="email" id="email" name="email" required /></p>
       <p><strong class="burdeo">Dirección:</strong> <input type="text" id="direccion" name="direccion" /></p>
       <button type="submit">Guardar Cambios</button>
       <p id="mensaje-guardado">Datos actualizados correctamente ✔</p>
@@ -119,8 +119,8 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = 'login.php';
       } else {
         console.log(data); // para debug
-        document.getElementById('nombre').value = data.nombre || '';
-        document.getElementById('correo').value = data.correo || '';
+        document.getElementById('nombres').value = data.nombres || '';
+        document.getElementById('email').value = data.email || '';
         document.getElementById('direccion').value = data.direccion || '';
 
         const tbody = document.getElementById('historial');
@@ -152,12 +152,12 @@ document.addEventListener('DOMContentLoaded', function () {
     e.preventDefault();
 
     const datos = {
-      nombre: document.getElementById('nombre').value,
-      correo: document.getElementById('correo').value,
+      nombres: document.getElementById('nombres').value,
+      email: document.getElementById('email').value,
       direccion: document.getElementById('direccion').value
     };
 
-    fetch('update_user_data.php', {
+    fetch('api/update_user_data.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

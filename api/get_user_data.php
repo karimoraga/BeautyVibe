@@ -52,8 +52,8 @@ while($row = $resultPedidos->fetch_assoc()) {
 
 // 3. Enviar respuesta como JSON
 echo json_encode([
-    'nombre' => $user['nombres'] ?? '',
-    'correo' => $user['email'] ?? '',
+    'nombres' => $user['nombres'] ?? '',
+    'email' => $user['email'] ?? '',
     'direccion' => $user['direccion'] ?? '',
     'historialPedidos' => $pedidos
 ]);
