@@ -143,8 +143,8 @@ if(!$producto) die("No existe el producto.");
     </div>
     <div class="producto bg2" style="width:30%">
       <p>
-        <a class="btn" href="?p=<?= $p ?>&wishlist=<?= $producto["idProducto"] ?>">❤️ Wishlist</a>
-        <a class="btn" href="?p=<?= $p ?>&carrito=<?= $producto["idProducto"] ?>">🛒 Carrito</a>
+        <a class="btn" href="?p=<?= $p ?>&wishlist=<?= $producto["idProducto"] ?>">❤️ Agregar a Wishlist</a>
+        <a class="btn" href="?p=<?= $p ?>&carrito=<?= $producto["idProducto"] ?>">🛒 Agregar a Carrito</a>
       </p>
     </div>
 </div>

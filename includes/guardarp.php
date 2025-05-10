@@ -18,7 +18,7 @@
     $q->execute();
     $r = $q->get_result();
     if($r->num_rows > 0) {
-      echo "<div class=\"msg\">El producto ya está en su $operacion.<br><a href=\"\">Ver $operacion</a></div>";
+      echo "<div class=\"msg\">El producto ya está en su $operacion.<br><a href=\"$operacion.php\">Ver $operacion</a></div>";
     } else {
       // Agregar a la wishlist/carrito
       $sql = $mysqli->prepare("INSERT INTO $operacion (idUsuario, idProducto) VALUES (?, ?)");
@@ -26,7 +26,7 @@
       $sql->execute();
       if($mysqli->error) echo $mysqli->error;
 
-      echo "<div class=\"msg\">Producto agregado a su $operacion.</div>";
+      echo "<div class=\"msg\">Producto agregado a su $operacion.<br><a href=\"$operacion.php\">Ver $operacion</a></div>";
     }
   }
 ?>
