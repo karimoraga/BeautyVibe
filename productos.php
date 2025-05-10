@@ -135,6 +135,7 @@ if ($result->num_rows > 0) {
         <img src="imgs/productos/<?= $producto["img"] ?>">
         <h3><?= $producto["nombre"] ?></h3>
         <h4><?= $producto["descripcion"] ?></h4>
+        <h4><?= $producto["marca"] ?></h4>
         <h4><a href="?c=<?= $producto["cid"] ?>"><?= $producto["categoria"] ?></a></h4>
         <p>$<?= number_format($producto["precio"], 0, ",", ".") ?> CLP</p>
         <p>

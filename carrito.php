@@ -42,12 +42,8 @@ $q = $mysqli->prepare($sql);
 $q->bind_param("s", $_SESSION["username"]);
 $q->execute();
 $r = $q->get_result();
+$productos = ($r->num_rows > 0) ? $r->fetch_all(MYSQLI_ASSOC) : [];
 
-if($r->num_rows > 0) {
-  $productos = $r->fetch_all(MYSQLI_ASSOC);
-} else {
-  $productos = [];
-}
 $total = 0;
 ?>
 <script>
