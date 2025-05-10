@@ -3,6 +3,7 @@ const urlAgregarProducto = 'http://localhost/BEAUTY-VIBE/api/agregarProducto.php
 const urlEditarProducto = 'http://localhost/BEAUTY-VIBE/api/editarProducto.php'
 const urlBorrarProducto = 'http://localhost/BEAUTY-VIBE/api/borrarProducto.php'
 
+let listaCategorias = []
 let listaProductos = []
 
 const objProducto= {
@@ -13,6 +14,7 @@ const objProducto= {
     precio: 0,
     stock: 0,
     categoria: '',
+    nombreCategoria: '',
     img: ''
 }
 
@@ -55,32 +57,34 @@ async function validarFormulario(e) {
         objProducto.precio = precioInput.value
         objProducto.stock = stockInput.value
         objProducto.categoria = categoriaInput.value
-        objProducto.img = await toBase64(imgInput.files[0])
+        objProducto.img = (imgInput.files.length) ? await toBase64(imgInput.files[0]) : '';
         agregarProducto()
     }
 }
 
 async function obtenerProductos() {
-
-    listaProductos = await fetch(urlObtenerProducto)
+    let resultado = await fetch(urlObtenerProducto)
     .then(respuesta => respuesta.json())
     .then(datos => datos)
     .catch(error => console.log(error))
 
+    listaCategorias = resultado["categorias"];
+    listaProductos = resultado["productos"];
+
     mostrarProductos()
 
 }
+
 obtenerProductos()
 
 function mostrarProductos() {
-
     const divProductos = document.querySelector('.div-productos')
 
     listaProductos.forEach(producto => {
-        const {idProducto, nombre, marca, descripcion, precio, stock, categoria, img} = producto
+        const {idProducto, nombre, marca, descripcion, precio, stock, nombreCategoria, img} = producto
 
         const parrafo = document.createElement('p')
-        parrafo.innerHTML = `${idProducto} - ${nombre} - ${marca} - ${descripcion} - \$${precio} - ${stock} - ${categoria}`
+        parrafo.innerHTML = `${idProducto} - ${nombre} - ${marca} - ${descripcion} - \$${precio} - ${stock} - ${nombreCategoria}`
         if(img != "") {
           parrafo.innerHTML += "<br><img src=\"imgs/productos/" + img + "\"><br>";
         }
@@ -104,6 +108,23 @@ function mostrarProductos() {
         divProductos.appendChild(parrafo)
         divProductos.appendChild(hr)
 
+    })
+
+    const sel = document.getElementById("categoria");
+    sel.innerText = null;
+
+    const opt = document.createElement("option");
+    opt.value = '';
+    opt.text = "Selecciona categoría";
+    sel.add(opt);
+
+    listaCategorias.forEach(categoria => {
+        const {id, nombre} = categoria;
+        
+        const opt = document.createElement("option");
+        opt.value = id;
+        opt.text = nombre;
+        sel.add(opt);
     })
 
 }
@@ -136,9 +157,7 @@ async function editarProducto() {
     objProducto.precio = precioInput.value
     objProducto.stock = stockInput.value
     objProducto.categoria = categoriaInput.value
-    if(imgInput.value) {
-      objProducto.img = await toBase64(imgInput.files[0])
-    }
+    objProducto.img = (imgInput.files.length) ? await toBase64(imgInput.files[0]) : '';
 
     const res = await fetch(urlEditarProducto,
         {
@@ -166,7 +185,6 @@ async function editarProducto() {
 }
 
 async function eliminarProducto(id) {
-
     const res = await fetch(urlBorrarProducto,
         {
             method: 'POST',

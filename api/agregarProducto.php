@@ -12,8 +12,12 @@
     $json = file_get_contents("php://input");
     $objProducto = json_decode($json);
     
-    $filename = manejarImagen($objProducto->img);
-    if(!$filename) $error = "Problema al subir imagen.";
+    if($objProducto->img) {
+      $filename = manejarImagen($objProducto->img);
+      if(!$filename) $error = "Problema al subir imagen.";
+    } else {
+      $filename = '';
+    }
 
     $sql = $mysqli->prepare("INSERT INTO productos (nombre, marca, descripcion, precio, stock, categoria, img) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $sql->bind_param("sssiiss",

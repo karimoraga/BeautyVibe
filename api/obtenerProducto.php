@@ -6,15 +6,19 @@
 
     require "conexion.php";
     
-    $sql = "SELECT * FROM productos";
+    $sql = "SELECT productos.*, categorias.nombre AS nombreCategoria FROM productos INNER JOIN categorias ON productos.categoria = categorias.id";
     $query = $mysqli->query($sql);
-    
-    $datos = array();
-    
+    $productos = array();
     while($resultado = $query->fetch_assoc()) {
-        $datos[] = $resultado;
+        $productos[] = $resultado;
+    }
+
+    $sql = "SELECT * FROM categorias";
+    $query = $mysqli->query($sql);
+    $categorias = array();
+    while($resultado = $query->fetch_assoc()) {
+        $categorias[] = $resultado;
     }
     
-    echo json_encode($datos);
-    
+    echo json_encode(["productos" => $productos, "categorias" => $categorias]);
 ?>

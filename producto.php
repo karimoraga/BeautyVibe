@@ -62,6 +62,7 @@ if(!$producto) die("No existe el producto.");
 
     .producto img {
         max-width: 100%;
+        width: 250px;
         height: 250px;
         object-fit: cover;
         border-radius: 10px;
@@ -71,11 +72,13 @@ if(!$producto) die("No existe el producto.");
         color: #cc6699;
         font-size: 16px;
         margin: 10px 0 5px;
+        width: 280px;
     }
 
     .producto h4 {
         font-size: 14px;
         margin: 0 0 5px;
+        width: 280px;
     }
 
     .producto h4 a {
@@ -122,6 +125,7 @@ if(!$producto) die("No existe el producto.");
       margin-top: 10px;
       margin-bottom: 10px;
     }
+    .producto-container small { display: block; width: 280px }
 </style>
 
 <div class="navbar">
@@ -129,7 +133,7 @@ if(!$producto) die("No existe el producto.");
 </div>
 
 <div class="catalogo-container">
-    <div class="producto bg1" style="width:70%">
+    <div class="producto bg1" style="width:580px">
       <div class="producto-container">
         <div><img src="imgs/productos/<?= $producto["img"] ?>"></div>
         <div class="desc">
@@ -141,7 +145,7 @@ if(!$producto) die("No existe el producto.");
         </div>
       </div>
     </div>
-    <div class="producto bg2" style="width:30%">
+    <div class="producto bg2">
       <p>
         <a class="btn" href="?p=<?= $p ?>&wishlist=<?= $producto["idProducto"] ?>">❤️ Agregar a Wishlist</a>
         <a class="btn" href="?p=<?= $p ?>&carrito=<?= $producto["idProducto"] ?>">🛒 Agregar a Carrito</a>

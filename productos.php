@@ -22,6 +22,8 @@ EOL;
 if(isset($_GET["c"])) $c = intval($_GET["c"]);
 if($c) $sql .= " WHERE productos.categoria = " . intval($c);
 
+$sql.= " ORDER BY productos.categoria ASC, productos.nombre ASC";
+
 $result = $mysqli->query($sql);
 if(!$result) die($mysqli->error);
 
@@ -93,8 +95,14 @@ if ($result->num_rows > 0) {
         border-radius: 6px;
         cursor: pointer;
         font-size: 14px;
+        
     }
 
+    .registerbtn {
+       {
+        margin-top: auto;
+        }
+      }
     .producto button:hover {
         background-color: #d44872;
     }

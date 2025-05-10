@@ -17,7 +17,7 @@ $productos = ($result->num_rows > 0) ? $result->fetch_all(MYSQLI_ASSOC) : [];
       Te invitamos a registrarte, revisar nuestro catálogo y disfrutar nuestros productos!</p>
 
 <h2>Productos Destacados</h2>
-<p>Sombras:</p>
+
 
 <div class="slideshow-container">
   <?php foreach ($productos as $producto): ?>
