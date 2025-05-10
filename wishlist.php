@@ -51,7 +51,7 @@ if($r->num_rows > 0) {
         <tbody>
         <?php foreach ($productos as $producto): ?>
             <tr>
-                <td><?= $producto["nombre"] ?></td>
+                <td><a href="producto.php?p=<?= $producto["idProducto"] ?>"><?= $producto["nombre"] ?></a></td>
                 <td><?= $producto["marca"] ?></td>
                 <td>$<?= number_format($producto["precio"], 0, ",", ".") ?></td>
                 <td><a href="?quitar=<?= $producto["idProducto"] ?>">Quitar</a></td>

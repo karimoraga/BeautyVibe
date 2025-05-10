@@ -25,54 +25,23 @@ if($c) $sql .= " WHERE productos.categoria = " . intval($c);
 $result = $mysqli->query($sql);
 if(!$result) die($mysqli->error);
 
-$productos = ($result->num_rows > 0) ? $result->fetch_all(MYSQLI_ASSOC) : [];
-
 if ($result->num_rows > 0) {
   $productos = $result->fetch_all(MYSQLI_ASSOC);
   if($c) $categoria_nombre = $productos[0]["categoria"];
 } else {
   $productos = [];
+  $categoria_nombre = "???";
 }
 ?>
 <?php include "includes/header.php"; ?>
 <?php include "includes/dropdown.php"; ?>
 <?php include "includes/navbar.php"; ?>
-<?php
-  $operacion = "";
-
-  if(isset($_GET["wishlist"])) {
-    $operacion = "wishlist";
-  } else if(isset($_GET["carrito"])) {
-    $operacion = "carrito";
-  }
-
-  if($operacion != "") {
-    usercheck();
-
-    $idproducto = intval($_GET[$operacion]);
-
-    $q = $mysqli->prepare("SELECT * FROM $operacion WHERE idUsuario = ? AND idProducto = ?");
-    $q->bind_param("ii", $_SESSION["idUsuario"], $idproducto);
-
-    $q->execute();
-    $r = $q->get_result();
-    if($r->num_rows > 0) {
-      echo "<div class=\"msg\">El producto ya está en su $operacion.<br><a href=\"\">Ver $operacion</a></div>";
-    } else {
-      // Agregar a la wishlist/carrito
-      $sql = $mysqli->prepare("INSERT INTO $operacion (idUsuario, idProducto) VALUES (?, ?)");
-      $sql->bind_param("ii", $_SESSION["idUsuario"], $idproducto);
-      $sql->execute();
-      if($mysqli->error) echo $mysqli->error;
-
-      echo "<div class=\"msg\">Producto agregado a su $operacion.</div>";
-    }
-  }
-?>
+<?php include "includes/guardarp.php"; ?>
 <style>
     .catalogo-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        display: flex;
+        flex-flow: row wrap;
+        align-items: stretch;
         gap: 20px;
         max-width: 900px;
         margin: 0 auto;
@@ -82,6 +51,7 @@ if ($result->num_rows > 0) {
     .producto {
         background-color:rgb(251, 172, 204);
         border-radius: 12px;
+        width: 200px;
         padding: 15px;
         text-align: center;
         box-shadow: 0 4px 10px rgba(0,0,0,0.08);
@@ -110,6 +80,11 @@ if ($result->num_rows > 0) {
         margin-bottom: 10px;
     }
 
+    .producto small {
+        display: block;
+        height: auto;
+    }
+
     .producto button {
         background-color: #e75981;
         color: white;
@@ -133,7 +108,7 @@ if ($result->num_rows > 0) {
 <div class="catalogo-container">
     <?php foreach ($productos as $producto): ?>
     <div class="producto">
-        <img src="imgs/productos/<?= $producto["img"] ?>">
+        <a href="producto.php?p=<?= $producto["idProducto"] ?>"><img src="imgs/productos/<?= $producto["img"] ?>"></a>
         <h3><?= $producto["nombre"] ?></h3>
         <h4><?= $producto["marca"] ?></h4>
         <h4><a href="?c=<?= $producto["cid"] ?>"><?= $producto["categoria"] ?></a></h4>

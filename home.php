@@ -8,16 +8,7 @@ $sql = "SELECT idProducto, img FROM productos ORDER BY RAND() LIMIT 3";
 $result = $mysqli->query($sql);
 if(!$result) die($mysqli->error);
 
-
-// Esto es equivalente
 $productos = ($result->num_rows > 0) ? $result->fetch_all(MYSQLI_ASSOC) : [];
-
-// A esto
-if ($result->num_rows > 0) {
-  $productos = $result->fetch_all(MYSQLI_ASSOC);
-} else {
-  $productos = [];
-}
 
 ?>
   <div class="box">

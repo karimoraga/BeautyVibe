@@ -241,7 +241,9 @@ tfoot th {
   border-radius: 10px;
   overflow: hidden;
 }
-
+.wishlist-table a {
+  color:rgb(80, 124, 160);
+}
 .wishlist-table th,
 .wishlist-table td {
   padding: 12px;

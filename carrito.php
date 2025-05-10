@@ -70,7 +70,7 @@ $total = 0;
         <tbody>
         <?php foreach ($productos as $producto): ?>
             <tr>
-                <td><?= $producto["nombre"] ?></td>
+                <td><a href="producto.php?p=<?= $producto["idProducto"] ?>"><?= $producto["nombre"] ?></a></td>
                 <td><?= $producto["marca"] ?></td>
                 <td>$<?= number_format($producto["precio"], 0, ",", ".") ?></td>
                 <td><input name="c<?= $producto["idProducto"] ?>" type="number" min="0" value="<?= $producto["cantidad"] ?>" size="3"></td>

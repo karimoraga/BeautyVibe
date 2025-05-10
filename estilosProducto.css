@@ -105,6 +105,10 @@ a:visited {
     font-family: Verdana;
 }
 
+.contenedor .div-listado img {
+  width: 200px;
+}
+
 .contenedor .div-listado .div-productos {
     width: 100%;
     flex-direction: column;
