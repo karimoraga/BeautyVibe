@@ -20,7 +20,7 @@ if(isset($_GET["quitar"])) {
 }
 
 $sql = <<<EOL
-  SELECT wishlist.idProducto AS idProducto, productos.nombre AS nombre, productos.descripcion AS descripcion, productos.precio AS precio
+  SELECT wishlist.idProducto AS idProducto, productos.nombre AS nombre, productos.marca AS marca, productos.precio AS precio
   FROM wishlist
   INNER JOIN productos ON productos.idProducto = wishlist.idProducto
   WHERE wishlist.idUsuario = ?
@@ -43,7 +43,7 @@ if($r->num_rows > 0) {
         <thead>
             <tr>
                 <th>Producto</th>
-                <th>Descripción</th>
+                <th>Marca</th>
                 <th>Precio</th>
                 <th>Quitar</th>
             </tr>
@@ -52,7 +52,7 @@ if($r->num_rows > 0) {
         <?php foreach ($productos as $producto): ?>
             <tr>
                 <td><?= $producto["nombre"] ?></td>
-                <td><?= $producto["descripcion"] ?></td>
+                <td><?= $producto["marca"] ?></td>
                 <td>$<?= number_format($producto["precio"], 0, ",", ".") ?></td>
                 <td><a href="?quitar=<?= $producto["idProducto"] ?>">Quitar</a></td>
             </tr>

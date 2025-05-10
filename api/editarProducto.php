@@ -19,9 +19,9 @@
       $filename = manejarImagen($objProducto->img);
       if(!$filename) $error = "Problema al subir imagen.";
 
-      $sql = "UPDATE productos SET nombre='$objProducto->nombre', descripcion = '$objProducto->descripcion', precio='$objProducto->precio', stock='$objProducto->stock', categoria='$objProducto->categoria', img='$filename' WHERE idProducto='$objProducto->idProducto'";        
+      $sql = "UPDATE productos SET nombre='$objProducto->nombre', marca='$objProducto->marca', descripcion = '$objProducto->descripcion', precio='$objProducto->precio', stock='$objProducto->stock', categoria='$objProducto->categoria', img='$filename' WHERE idProducto='$objProducto->idProducto'";        
     } else {
-      $sql = "UPDATE productos SET nombre='$objProducto->nombre', descripcion = '$objProducto->descripcion', precio='$objProducto->precio', stock='$objProducto->stock', categoria='$objProducto->categoria'  WHERE idProducto='$objProducto->idProducto'";
+      $sql = "UPDATE productos SET nombre='$objProducto->nombre', marca='$objProducto->marca', descripcion = '$objProducto->descripcion', precio='$objProducto->precio', stock='$objProducto->stock', categoria='$objProducto->categoria'  WHERE idProducto='$objProducto->idProducto'";
     }
     
     $query = $mysqli->query($sql);

@@ -109,9 +109,6 @@ if (!isset($_SESSION['idUsuario'])) {
     </table>
   </div>
 </div>
-
-<?php include 'includes/footer.php'; ?>
-
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   // Obtener datos del usuario
@@ -134,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
           data.historialPedidos.forEach(pedido => {
             historialHTML += `
               <tr>
-                <td>#${pedido.id_pedido}</td>
+                <td>#${pedido.idPedido}</td>
                 <td>${pedido.fecha}</td>
                 <td>$${pedido.total}</td>
                 <td>${pedido.estado || 'Pendiente'}</td>

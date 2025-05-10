@@ -8,6 +8,7 @@ let listaProductos = []
 const objProducto= {
     idProducto: '',
     nombre: '',
+    marca: '',
     descripcion: '',
     precio: 0,
     stock: 0,
@@ -20,6 +21,7 @@ let editando = false
 const formulario = document.querySelector('#formulario')
 
 const nombreInput = document.querySelector('#nombre')
+const marcaInput = document.querySelector('#marca')
 const descripcionInput = document.querySelector('#descripcion')
 const precioInput = document.querySelector('#precio')
 const stockInput = document.querySelector('#stock')
@@ -48,6 +50,7 @@ async function validarFormulario(e) {
         editando = false
     } else {
         objProducto.nombre = nombreInput.value
+        objProducto.marca = marcaInput.value
         objProducto.descripcion = descripcionInput.value
         objProducto.precio = precioInput.value
         objProducto.stock = stockInput.value
@@ -74,10 +77,10 @@ function mostrarProductos() {
     const divProductos = document.querySelector('.div-productos')
 
     listaProductos.forEach(producto => {
-        const {idProducto, nombre, descripcion, precio, stock, categoria, img} = producto
+        const {idProducto, nombre, marca, descripcion, precio, stock, categoria, img} = producto
 
         const parrafo = document.createElement('p')
-        parrafo.innerHTML = `${idProducto} - ${nombre} -  ${descripcion} - \$${precio} - ${stock} - ${categoria}`
+        parrafo.innerHTML = `${idProducto} - ${nombre} - ${marca} - ${descripcion} - \$${precio} - ${stock} - ${categoria}`
         if(img != "") {
           parrafo.innerHTML += "<br><img src=\"imgs/productos/" + img + "\"><br>";
         }
@@ -128,6 +131,7 @@ async function agregarProducto() {
 async function editarProducto() {
     
     objProducto.nombre = nombreInput.value
+    objProducto.marca = marcaInput.value
     objProducto.descripcion = descripcionInput.value
     objProducto.precio = precioInput.value
     objProducto.stock = stockInput.value
@@ -183,9 +187,10 @@ async function eliminarProducto(id) {
 }
 
 function cargarProducto(producto) {
-    const {idProducto, nombre, descripcion, precio, stock, categoria} = producto
+    const {idProducto, nombre, marca, descripcion, precio, stock, categoria} = producto
 
     nombreInput.value = nombre
+    marcaInput.value = marca
     descripcionInput.value = descripcion
     precioInput.value = precio
     stockInput.value = stock
@@ -207,6 +212,7 @@ function limpiarHTML() {
 function limpiarObjeto() {
     objProducto.idProducto = ''
     objProducto.nombre = ''
+    objProducto.marca = ''
     objProducto.descripcion = ''
     objProducto.precio = 0
     objProducto.stock = 0

@@ -14,7 +14,7 @@ $c = 0;
 $categoria_nombre = "Todo";
 
 $sql = <<<EOL
-  SELECT idProducto, productos.nombre AS nombre, descripcion, precio, stock, categorias.id AS cid, categorias.nombre AS categoria, img
+  SELECT idProducto, productos.nombre AS nombre, descripcion, marca, precio, stock, categorias.id AS cid, categorias.nombre AS categoria, img
   FROM productos
   INNER JOIN categorias ON categorias.id = productos.categoria
 EOL;
@@ -54,9 +54,8 @@ if ($result->num_rows > 0) {
 
     $q->execute();
     $r = $q->get_result();
-
     if($r->num_rows > 0) {
-      echo "<div class=\"msg\">El producto ya está en su $operacion.</div>";
+      echo "<div class=\"msg\">El producto ya está en su $operacion.<br><a href=\"\">Ver $operacion</a></div>";
     } else {
       // Agregar a la wishlist/carrito
       $sql = $mysqli->prepare("INSERT INTO $operacion (idUsuario, idProducto) VALUES (?, ?)");
@@ -134,14 +133,14 @@ if ($result->num_rows > 0) {
     <div class="producto">
         <img src="imgs/productos/<?= $producto["img"] ?>">
         <h3><?= $producto["nombre"] ?></h3>
-        <h4><?= $producto["descripcion"] ?></h4>
         <h4><?= $producto["marca"] ?></h4>
         <h4><a href="?c=<?= $producto["cid"] ?>"><?= $producto["categoria"] ?></a></h4>
+        <small><?= $producto["descripcion"] ?></small>
         <p>$<?= number_format($producto["precio"], 0, ",", ".") ?> CLP</p>
         <p>
-          <a href="?c=<?= $c ?>&wishlist=<?= $producto["idProducto"] ?>">Wishlist</a>
-          |
-          <a href="?c=<?= $c ?>&carrito=<?= $producto["idProducto"] ?>">Carro</a>
+          <a class="registerbtn" href="?c=<?= $c ?>&wishlist=<?= $producto["idProducto"] ?>">❤️</a>
+          &nbsp;
+          <a class="registerbtn" href="?c=<?= $c ?>&carrito=<?= $producto["idProducto"] ?>">🛒</a>
         </p>
     </div>
     <?php endforeach; ?>

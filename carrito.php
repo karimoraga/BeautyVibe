@@ -31,7 +31,7 @@ $sql = <<<EOL
     carrito.idProducto AS idProducto,
     carrito.cantidad AS cantidad,
     productos.nombre AS nombre,
-    productos.descripcion AS descripcion,
+    productos.marca AS marca,
     productos.precio AS precio
   FROM carrito
   INNER JOIN productos ON productos.idProducto = carrito.idProducto
@@ -60,7 +60,7 @@ $total = 0;
         <thead>
             <tr>
                 <th>Producto</th>
-                <th>Descripción</th>
+                <th>Marca</th>
                 <th>Precio</th>
                 <th>Cantidad</th>
                 <th>Subtotal</th>
@@ -71,7 +71,7 @@ $total = 0;
         <?php foreach ($productos as $producto): ?>
             <tr>
                 <td><?= $producto["nombre"] ?></td>
-                <td><?= $producto["descripcion"] ?></td>
+                <td><?= $producto["marca"] ?></td>
                 <td>$<?= number_format($producto["precio"], 0, ",", ".") ?></td>
                 <td><input name="c<?= $producto["idProducto"] ?>" type="number" min="0" value="<?= $producto["cantidad"] ?>" size="3"></td>
                 <td>$<?= number_format($producto["precio"] * $producto["cantidad"], 0, ",", ".") ?> </td>

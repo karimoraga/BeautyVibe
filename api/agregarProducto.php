@@ -15,9 +15,10 @@
     $filename = manejarImagen($objProducto->img);
     if(!$filename) $error = "Problema al subir imagen.";
 
-    $sql = $mysqli->prepare("INSERT INTO productos (nombre, descripcion, precio, stock, categoria, img) VALUES (?, ?, ?, ?, ?, ?)");
-    $sql->bind_param("ssiiss",
+    $sql = $mysqli->prepare("INSERT INTO productos (nombre, marca, descripcion, precio, stock, categoria, img) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $sql->bind_param("sssiiss",
       $objProducto->nombre,
+      $objProducto->marca,
       $objProducto->descripcion,
       $objProducto->precio,
       $objProducto->stock,
