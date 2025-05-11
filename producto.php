@@ -126,6 +126,21 @@ if(!$producto) die("No existe el producto.");
       margin-bottom: 10px;
     }
     .producto-container small { display: block; width: 280px }
+
+    .stock {
+      border-radius: 15px;
+      padding: 10px;
+      margin-bottom: 5px;
+      display: inline-block;
+    }
+
+    .disponible {
+      background-color:rgb(102, 222, 174);
+    }
+
+    .nodisponible {
+      background-color:rgb(222, 102, 130);
+    }
 </style>
 
 <div class="navbar">
@@ -141,6 +156,7 @@ if(!$producto) die("No existe el producto.");
           <h4><?= $producto["marca"] ?></h4>
           <h4><a href="?c=<?= $producto["cid"] ?>"><?= $producto["categoria"] ?></a></h4>
           <h2>$<?= number_format($producto["precio"], 0, ",", ".") ?> CLP</h2>
+          <span class="stock <?= ($producto["stock"] > 0 ? "disponible" : "nodisponible") ?>">Stock disponible: <?= $producto["stock"] ?></span>
           <small><?= $producto["descripcion"] ?></small>
         </div>
       </div>

@@ -22,7 +22,7 @@ $productos = ($result->num_rows > 0) ? $result->fetch_all(MYSQLI_ASSOC) : [];
 <div class="slideshow-container">
   <?php foreach ($productos as $producto): ?>
   <div class="slideshome">
-    <img src="imgs/productos/<?= $producto["img"] ?>">
+    <a href="producto.php?p=<?= $producto["idProducto"] ?>"><img src="imgs/productos/<?= $producto["img"] ?>"></a>
   </div>
   <?php endforeach; ?>
 </div>
