@@ -63,6 +63,5 @@ if($r->num_rows > 0) {
     <button type="button" class="registerbtn" onclick="window.location.href='carrito.php'">Carrito</button>
     
 </div>
+<?php include "includes/footer.php"; ?>
 
-</body>
-</html>

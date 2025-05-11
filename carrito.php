@@ -100,5 +100,4 @@ $total = 0;
     </form>
 </div>
 
-</body>
-</html>
+<?php include "includes/footer.php"; ?>

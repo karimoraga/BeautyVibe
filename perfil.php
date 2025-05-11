@@ -76,6 +76,7 @@ if (!isset($_SESSION['idUsuario'])) {
   color: #880e4f;
 }
 </style>
+<?php include "includes/dropdown.php"; ?>
 <?php include "includes/navbar.php"; ?>
 
 <div class="box1">
