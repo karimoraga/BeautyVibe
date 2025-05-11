@@ -244,6 +244,9 @@ tfoot th {
 .wishlist-table a {
   color:rgb(80, 124, 160);
 }
+.wishlist-table a:visited {
+  color:rgb(80, 124, 160);
+}
 .wishlist-table th,
 .wishlist-table td {
   padding: 12px;

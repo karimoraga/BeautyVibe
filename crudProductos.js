@@ -75,8 +75,6 @@ async function obtenerProductos() {
 
 }
 
-obtenerProductos()
-
 function mostrarProductos() {
     const divProductos = document.querySelector('.div-productos')
 
@@ -236,3 +234,5 @@ function limpiarObjeto() {
     objProducto.stock = 0
     objProducto.categoria = ''
 }
+
+obtenerProductos()
