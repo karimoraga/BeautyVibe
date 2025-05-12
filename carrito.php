@@ -96,7 +96,6 @@ $total = 0;
     </table>
     <input type="submit" class="registerbtn" name="actualizar" value="Actualizar carro">
     <br>
-    <button type="button" class="registerbtn" onclick="pagar()">Pago</button>
     </form>
 </div>
 
